@@ -4,14 +4,14 @@
      $scope.control = {};
      $scope.marker = { coords: { latitude: 0, longitude: 0 }, id: 1 };
      $scope.markerControl = {};
-     $scope.markerOption = { draggable: true }
+     $scope.markerOption = { draggable: true };
      var searchBoxEvents = {
          places_changed: function(searchBox) {
              $scope.control.getGMap().panTo(searchBox.getPlaces()[0].geometry.location);
              $scope.markerControl.getGMarkers()[0].setPosition(searchBox.getPlaces()[0].geometry.location);
              $scope.control.getGMap().fitBounds(searchBox.getPlaces()[0].geometry.viewport);
          }
-     }
+     };
      $scope.events = {
          'click': function(map, eventName, event) {
              var latLng = event[0].latLng;
@@ -46,7 +46,7 @@
 
          $('.ui.modal').modal('show');
          $scope.control.refresh();
-     }
+     };
 
      $scope.onChoose = function() {
         var latLng = $scope.markerControl.getGMarkers()[0].getPosition();
@@ -54,11 +54,11 @@
          $scope.selectedRow.model.map.longitude = latLng.lng();
          $scope.setLocationForSelectedRows(latLng);
          $('.ui.modal').modal('hide');
-     }
+     };
 
      $scope.onCancel = function() {
          $('.ui.modal').modal('hide');
-     }
+     };
 
      $scope.setLocationForSelectedRows = function(latLng){
         $scope.gantt.rowsManager.rows.map(function(row){
@@ -68,6 +68,6 @@
             }
 
         });
-     }
+     };
 
  }]);
