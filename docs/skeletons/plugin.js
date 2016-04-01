@@ -1,6 +1,6 @@
 (function(){
     'use strict';
-    angular.module('gantt.xxxxxx', ['gantt', 'gantt.xxxxxx.templates']).directive('ganttXxxxxx', [function() {
+    angular.module('gantt.maps', ['gantt', 'gantt.maps.templates']).directive('ganttMaps', [function() {
         return {
             restrict: 'E',
             require: '^gantt',

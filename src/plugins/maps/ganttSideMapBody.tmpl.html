@@ -1,0 +1,35 @@
+<div ng-style="getLabelsCss()">
+    <div class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            Please Choose a Location
+        </div>
+        <div class="image content">
+            <script type="text/ng-template" id="searchbox.tpl.html">
+                <input type="text" placeholder="Search" class="searchbox">
+            </script>
+            <ui-gmap-google-map center='map.center' pan="true" zoom='map.zoom' draggable="true" control="control" style="width: 100%;height: 400px;" events="events">
+                <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position="'TOP_LEFT'"></ui-gmap-search-box>
+                <ui-gmap-marker idKey='marker.id'  control="markerControl" coords='marker.coords' options="markerOption">
+                </ui-gmap-marker>
+            </ui-gmap-google-map>
+        </div>
+        <div class="actions">
+            <div class="ui black deny button" ng-click="onCancel()">
+                Cancel
+            </div>
+            <div class="ui positive labeled icon button" ng-click="onChoose()">
+                Choose
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+    <div gantt-vertical-scroll-receiver>
+        <div class="gantt-row-label-background">
+            <div class="gantt-row-label gantt-row-height" ng-class='row.model.classes' ng-style="{'height': row.model.height}" ng-repeat="row in gantt.rowsManager.visibleRows track by row.model.id">
+                <div ng-if="row.model.map" class="gantt-map-container" ng-class="row.model.map.classes"><img ng-src="/img/choose-location-placeholder.png" style="cursor:pointer; margin:auto" ng-click="displayMap(row)"></img>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
