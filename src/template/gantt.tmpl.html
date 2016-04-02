@@ -38,6 +38,8 @@
                 <gantt-row ng-repeat="row in gantt.rowsManager.visibleRows track by row.model.id">
                     <gantt-task ng-repeat="task in row.visibleTasks track by task.model.id">
                     </gantt-task>
+                    <div class="gantt-tasks-wrapper" ng-style="{left:(row.tasksStart-30)+'px',width:(row.maxWidth+60)+'px'}" ng-if="row.model.showWrapper">
+                    </div>
                 </gantt-row>
             </gantt-body-rows>
         </gantt-body>

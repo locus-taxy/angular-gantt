@@ -60,3 +60,9 @@ textarea.live-row {
     font-size: 0.9em;
     color: #333;
 }
+
+.gantt-tasks-wrapper{
+    position: absolute;;
+    height: 90%;
+    background-color: red;
+}

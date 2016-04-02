@@ -7,6 +7,9 @@
 
             this.from = undefined;
             this.to = undefined;
+            this.tasksStart = undefined;
+            this.tasksEnd = undefined;
+            this.maxWidth = undefined;
 
             this.tasksMap = {};
             this.tasks = [];

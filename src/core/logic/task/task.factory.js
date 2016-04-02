@@ -104,6 +104,18 @@
                     }
 
                     this.$element.toggleClass('gantt-task-milestone', this.isMilestone());
+                    var vm = this;
+                    this.row.tasksStart = undefined;
+                    this.row.tasksEnd = undefined;
+                    this.row.tasks.map(function(task){
+                          if(vm.row.tasksStart===undefined||vm.row.tasksStart > task.left){
+                        vm.row.tasksStart = task.left;
+                        }
+                        if(vm.row.tasksEnd===undefined||vm.row.tasksEnd < (task.left + task.width)){
+                            vm.row.tasksEnd = task.left+task.width;
+                        }
+                        vm.row.maxWidth = vm.row.tasksEnd-vm.row.tasksStart;
+                        });
                 }
             }
         };
