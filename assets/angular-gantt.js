@@ -2446,6 +2446,9 @@ Github: https://github.com/angular-gantt/angular-gantt.git
 
             this.from = undefined;
             this.to = undefined;
+            this.tasksStart = undefined;
+            this.tasksEnd = undefined;
+            this.maxWidth = undefined;
 
             this.tasksMap = {};
             this.tasks = [];
@@ -3240,6 +3243,18 @@ Github: https://github.com/angular-gantt/angular-gantt.git
                     }
 
                     this.$element.toggleClass('gantt-task-milestone', this.isMilestone());
+                    var vm = this;
+                    this.row.tasksStart = undefined;
+                    this.row.tasksEnd = undefined;
+                    this.row.tasks.map(function(task){
+                          if(vm.row.tasksStart===undefined||vm.row.tasksStart > task.left){
+                        vm.row.tasksStart = task.left;
+                        }
+                        if(vm.row.tasksEnd===undefined||vm.row.tasksEnd < (task.left + task.width)){
+                            vm.row.tasksEnd = task.left+task.width;
+                        }
+                        vm.row.maxWidth = vm.row.tasksEnd-vm.row.tasksStart;
+                        });
                 }
             }
         };
@@ -5305,6 +5320,8 @@ angular.module('gantt.templates', []).run(['$templateCache', function($templateC
         '                <gantt-row ng-repeat="row in gantt.rowsManager.visibleRows track by row.model.id">\n' +
         '                    <gantt-task ng-repeat="task in row.visibleTasks track by task.model.id">\n' +
         '                    </gantt-task>\n' +
+        '                    <div class="gantt-tasks-wrapper" ng-style="{left:(row.tasksStart-30)+\'px\',width:(row.maxWidth+60)+\'px\'}" ng-if="row.model.showWrapper">\n' +
+        '                    </div>\n' +
         '                </gantt-row>\n' +
         '            </gantt-body-rows>\n' +
         '        </gantt-body>\n' +

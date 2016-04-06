@@ -3706,20 +3706,30 @@ angular.module('gantt.labels.templates', []).run(['$templateCache', function($te
 angular.module('gantt.maps.templates', []).run(['$templateCache', function($templateCache) {
     $templateCache.put('plugins/maps/ganttSideMapBody.tmpl.html',
         '<div ng-style="getLabelsCss()">\n' +
-        '    <div class="ui modal">\n' +
+        '    <div class="ui small modal location-chooser">\n' +
         '        <i class="close icon"></i>\n' +
         '        <div class="header">\n' +
         '            Please Choose a Location\n' +
         '        </div>\n' +
-        '        <div class="image content">\n' +
-        '            <script type="text/ng-template" id="searchbox.tpl.html">\n' +
-        '                <input type="text" placeholder="Search" class="searchbox">\n' +
-        '            </script>\n' +
-        '            <ui-gmap-google-map center=\'map.center\' pan="true" zoom=\'map.zoom\' draggable="true" control="control" style="width: 100%;height: 400px;" events="events">\n' +
-        '                <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position="\'TOP_LEFT\'"></ui-gmap-search-box>\n' +
-        '                <ui-gmap-marker idKey=\'marker.id\'  control="markerControl" coords=\'marker.coords\' options="markerOption">\n' +
-        '                </ui-gmap-marker>\n' +
-        '            </ui-gmap-google-map>\n' +
+        '        <div class="content">\n' +
+        '            <div class="modal-search ui category search">\n' +
+        '              <div class="ui icon input">\n' +
+        '                <input type="text" placeholder="Search places...">\n' +
+        '              </div>\n' +
+        '              <div class="results">\n' +
+        '                  <div class="category"><div class="name">Animals</div><a class="result"><div class="content"><div class="title">African Elephant</div><div class="description">Vulnerable</div></div></a><a class="result"><div class="content"><div class="title">African Wild Dog</div><div class="description">Endangered</div></div></a><a class="result"><div class="content"><div class="title">Albacore Tuna</div><div class="description">Near Threatened</div></div></a></div>\n' +
+        '              </div>\n' +
+        '            </div>\n' +
+        '            <div class="modal-map image content"><!--\n' +
+        '                <script type="text/ng-template" id="searchbox.tpl.html">\n' +
+        '                    <input type="text" placeholder="Search" class="searchbox">\n' +
+        '                </script> -->\n' +
+        '                <ui-gmap-google-map center=\'map.center\' pan="true" zoom=\'map.zoom\' draggable="true" control="control" style="width: 100%;height: 400px;" events="events">\n' +
+        '     <!--                <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position="\'TOP_LEFT\'"></ui-gmap-search-box> -->\n' +
+        '                    <ui-gmap-marker idKey=\'marker.id\'  control="markerControl" coords=\'marker.coords\' options="markerOption">\n' +
+        '                    </ui-gmap-marker>\n' +
+        '                </ui-gmap-google-map>\n' +
+        '            </div>\n' +
         '        </div>\n' +
         '        <div class="actions">\n' +
         '            <div class="ui black deny button" ng-click="onCancel()">\n' +
@@ -3730,18 +3740,29 @@ angular.module('gantt.maps.templates', []).run(['$templateCache', function($temp
         '                <i class="checkmark icon"></i>\n' +
         '            </div>\n' +
         '        </div>\n' +
+        '\n' +
         '    </div>\n' +
         '    <div gantt-vertical-scroll-receiver>\n' +
         '        <div class="gantt-row-label-background">\n' +
         '            <div class="gantt-row-label gantt-row-height" ng-class=\'row.model.classes\' ng-style="{\'height\': row.model.height}" ng-repeat="row in gantt.rowsManager.visibleRows track by row.model.id">\n' +
-        '                <div ng-if="row.model.map" class="gantt-map-container" ng-class="row.model.map.classes"><img ng-src="/img/choose-location-placeholder.png" style="cursor:pointer; margin:auto" ng-click="displayMap(row)"></img>\n' +
+        '                <div ng-if="row.model.map" class="gantt-map-container" ng-class="row.model.map.classes">\n' +
+        '                    <div class="choose-location-btn" ng-click="displayMap(row)">\n' +
+        '                        <div class="ui card location-card empty">\n' +
+        '                          <div class="content">\n' +
+        '                           <div>Select a Location</div>\n' +
+        '                          </div>\n' +
+        '                          <div class="image">\n' +
+        '                            <img ng-src="/img/choose-location-placeholder.png" >\n' +
+        '                          </div>\n' +
+        '                        </div>\n' +
+        '                    </div>\n' +
         '                </div>\n' +
         '            </div>\n' +
         '        </div>\n' +
         '    </div>\n' +
         '</div>');
     $templateCache.put('plugins/maps/ganttSideMaps.tmpl.html',
-        '<div ng-controller="MapsController" style="position:absolute;width:270px;right:0px;">\n' +
+        '<div ng-controller="MapsController" class="maps-ctrl" style="position:absolute;width:180px;right:0px;">\n' +
         '<gantt-tree-header>\n' +
         '</gantt-tree-header>\n' +
         '<gantt-side-map-body>\n' +

@@ -1,18 +1,28 @@
 <div ng-style="getLabelsCss()">
-    <div class="ui modal">
+    <div class="ui small modal location-chooser">
         <i class="close icon"></i>
         <div class="header">
             Please Choose a Location
         </div>
-        <div class="image content">
-            <script type="text/ng-template" id="searchbox.tpl.html">
-                <input type="text" placeholder="Search" class="searchbox">
-            </script>
-            <ui-gmap-google-map center='map.center' pan="true" zoom='map.zoom' draggable="true" control="control" style="width: 100%;height: 400px;" events="events">
-                <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position="'TOP_LEFT'"></ui-gmap-search-box>
-                <ui-gmap-marker idKey='marker.id'  control="markerControl" coords='marker.coords' options="markerOption">
-                </ui-gmap-marker>
-            </ui-gmap-google-map>
+        <div class="content">
+            <div class="modal-search ui category search">
+              <div class="ui icon input">
+                <input type="text" placeholder="Search places...">
+              </div>
+              <div class="results">
+                  <div class="category"><div class="name">Animals</div><a class="result"><div class="content"><div class="title">African Elephant</div><div class="description">Vulnerable</div></div></a><a class="result"><div class="content"><div class="title">African Wild Dog</div><div class="description">Endangered</div></div></a><a class="result"><div class="content"><div class="title">Albacore Tuna</div><div class="description">Near Threatened</div></div></a></div>
+              </div>
+            </div>
+            <div class="modal-map image content"><!--
+                <script type="text/ng-template" id="searchbox.tpl.html">
+                    <input type="text" placeholder="Search" class="searchbox">
+                </script> -->
+                <ui-gmap-google-map center='map.center' pan="true" zoom='map.zoom' draggable="true" control="control" style="width: 100%;height: 400px;" events="events">
+     <!--                <ui-gmap-search-box template="searchbox.template" events="searchbox.events" position="'TOP_LEFT'"></ui-gmap-search-box> -->
+                    <ui-gmap-marker idKey='marker.id'  control="markerControl" coords='marker.coords' options="markerOption">
+                    </ui-gmap-marker>
+                </ui-gmap-google-map>
+            </div>
         </div>
         <div class="actions">
             <div class="ui black deny button" ng-click="onCancel()">
@@ -23,11 +33,22 @@
                 <i class="checkmark icon"></i>
             </div>
         </div>
+
     </div>
     <div gantt-vertical-scroll-receiver>
         <div class="gantt-row-label-background">
             <div class="gantt-row-label gantt-row-height" ng-class='row.model.classes' ng-style="{'height': row.model.height}" ng-repeat="row in gantt.rowsManager.visibleRows track by row.model.id">
-                <div ng-if="row.model.map" class="gantt-map-container" ng-class="row.model.map.classes"><img ng-src="/img/choose-location-placeholder.png" style="cursor:pointer; margin:auto" ng-click="displayMap(row)"></img>
+                <div ng-if="row.model.map" class="gantt-map-container" ng-class="row.model.map.classes">
+                    <div class="choose-location-btn" ng-click="displayMap(row)">
+                        <div class="ui card location-card empty">
+                          <div class="content">
+                           <div>Select a Location</div>
+                          </div>
+                          <div class="image">
+                            <img ng-src="/img/choose-location-placeholder.png" >
+                          </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
