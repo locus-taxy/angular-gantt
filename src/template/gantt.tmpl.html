@@ -38,7 +38,7 @@
                 <gantt-row ng-repeat="row in gantt.rowsManager.visibleRows track by row.model.id">
                     <gantt-task ng-repeat="task in row.visibleTasks track by task.model.id">
                     </gantt-task>
-                    <div class="gantt-tasks-wrapper" ng-style="{left:(row.tasksStart-30)+'px',width:(row.maxWidth+60)+'px'}" ng-if="row.model.showWrapper">
+                    <div class="gantt-tasks-wrapper" ng-style="{left:(row.tasksStart-30)+'px',width:(row.maxWidth+60)+'px', background:row.model.wrapColor}" ng-if="row.model.showWrapper">
                     </div>
                 </gantt-row>
             </gantt-body-rows>
@@ -139,7 +139,7 @@
     </script>
 
     <script type="text/ng-template" id="template/ganttTaskBackground.tmpl.html">
-        <div class="gantt-task-background" ng-style="{'background-color': task.model.color}"></div>
+        <div class="gantt-task-background" ng-style="{'background-color': task.model.color, 'opacity':task.model.opacity}"></div>
     </script>
 
     <script type="text/ng-template" id="template/ganttTaskForeground.tmpl.html">
